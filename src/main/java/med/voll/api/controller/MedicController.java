@@ -1,5 +1,6 @@
 package med.voll.api.controller;
 
+import jakarta.validation.Valid;
 import med.voll.api.address.Address;
 import med.voll.api.medic.Medic;
 import med.voll.api.medic.MedicRegistrationData;
@@ -20,7 +21,7 @@ public class MedicController {
 
     @PostMapping
     @Transactional
-    public void register(@RequestBody MedicRegistrationData data){
+    public void register(@RequestBody @Valid MedicRegistrationData data){
         repository.save(new Medic(data));
     }
 
