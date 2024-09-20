@@ -28,6 +28,8 @@ public class Medic {
     @Embedded
     private Address address;
 
+    private Boolean active;
+
 
     public Medic(MedicRegistrationData data) {
         this.name = data.name();
@@ -36,5 +38,24 @@ public class Medic {
         this.crm = data.crm();
         this.specialty = data.specialty();
         this.address = new Address(data.address());
+        this.active = true;
+    }
+
+    public void updateInformation(MedicUpdateData data) {
+        if(data.name() != null) {
+            this.name = data.name();
+        }
+
+        if(data.phone() != null) {
+            this.phone = data.phone();
+        }
+
+        if(data.address() != null) {
+            this.address.updateInformation(data.address());
+        }
+    }
+
+    public void delete() {
+        this.active = false;
     }
 }
